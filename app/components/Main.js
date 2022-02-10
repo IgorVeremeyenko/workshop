@@ -7,6 +7,8 @@ import * as Animatable from 'react-native-animatable';
 import { signOutAsync } from "expo-google-sign-in";
 import { Image } from "react-native-elements";
 import { ListItem, Avatar, Icon, Tooltip } from 'react-native-elements';
+import * as GoogleSignIn from 'expo-google-sign-in';
+import { Button } from "react-native-elements/dist/buttons/Button";
 
 const DATA = [
   {
@@ -79,18 +81,14 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
 );
 
 const credentials = {
-  clientId: '336956340236-hau0llikkvrptvrrjf5j4816iqkhdeb5.apps.googleusercontent.com',
-  appId: '1:336956340236:android:712bebc8f4f5c3a8699629',
-  apiKey: 'AIzaSyBUyBHWe9Uqp8qt7kwvbHKY7qARZJTqRUY',
-  databaseURL: 'https://elite-service-92d53-default-rtdb.europe-west1.firebasedatabase.app/',
-  storageBucket: 'elite-service-92d53.appspot.com',
-  messagingSenderId: '336956340236',
-  projectId: 'elite-service-92d53',
-  appName: 'project-336956340236'
+  expoClientId: `336956340236-qoc4o10ltq9mtj2fi5r5tm1vkvu24n5s.apps.googleusercontent.com`,
+  iosClientId: `336956340236-gudtjandvehiehk9lfud8q7k0audjoio.apps.googleusercontent.com`,
+  androidClientId: `336956340236-024g0jlisil8o9pvjns5ra53f7rmuug3.apps.googleusercontent.com`,
+  iosStandaloneAppClientId: `<YOUR_IOS_CLIENT_ID>`,
+  androidStandaloneAppClientId: `<YOUR_ANDROID_CLIENT_ID>`,
 };
 
 export default function Main({ navigation, route }) {
-  console.log('params in main ', route)
   const { tel } = route.params;
   const { accessToken, user, type } = route.params;
   const [selectedId, setSelectedId] = useState(null);
@@ -102,23 +100,22 @@ export default function Main({ navigation, route }) {
     setTimeout(() => { setRefreshing(false) }, 1000)
   }, []);
 
-  // useEffect(() => {
-    
-  //   if()
-  // }, [input])
+  
 
   async function signOut() {
+    console.log('exiting')
     try {
+      // await GoogleSignIn.signOutAsync();
       setLoading(true)
-      console.log(accessToken)
-      await Google.logOutAsync(accessToken, credentials);
+      await Google.logOutAsync({accessToken, ...credentials});
+      // await Google.logOutAsync({ accessToken, ...config });
       setLoading(false)
-      console.log('exiting')
-      navigation.navigate('intro')
+      navigation.navigate('Home', { successNav: false })
     } catch (error) {
       setLoading(false)
       Alert.alert('Something else went wrong... ', error.toString());
     }
+    
   }
 
   const submitButton = () => {
@@ -137,6 +134,7 @@ export default function Main({ navigation, route }) {
   }
 
   useLayoutEffect(() => {
+    
     navigation.setOptions({
       title: "  " + user.name, //Set Header Title
       headerStyle: {
@@ -145,7 +143,7 @@ export default function Main({ navigation, route }) {
 
       headerTintColor: 'black', //Set Header text color
       headerTitleStyle: {
-        fontWeight: 10, //Set Header text style
+        fontWeight: 'bold', //Set Header text style
       },
       headerRight: () => (
         <TouchableOpacity onPress={submitButton}>
@@ -161,6 +159,7 @@ export default function Main({ navigation, route }) {
           />
         </View>
       ),
+      
     });
   }, [navigation]);
   /*======================= */
@@ -190,7 +189,6 @@ export default function Main({ navigation, route }) {
   const renderItem = ({ item }) => {
     const { currentStatus } = item
     const selectedItem = () => {
-      console.log(item)
       setSelectedId(item.id);
       return navigation.navigate('Details', { params: { title: item.title, time: item.time, current: item.currentStatus, user: user.name } });
     }
@@ -220,6 +218,7 @@ export default function Main({ navigation, route }) {
   return (
     <>
       <View>
+      
         {loading &&
           <Animatable.View animation="fadeInDown" duration={1500} style={{ top: 55, bottom: 0 }}>
             <ActivityIndicator size="large" color="black" />
@@ -243,6 +242,7 @@ export default function Main({ navigation, route }) {
         extraData={selectedId}
         renderItem={renderItem}
       />
+      
       {/* <View>
         {
           DATA.map((l, i) => (

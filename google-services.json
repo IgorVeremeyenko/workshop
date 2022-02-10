@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "336956340236",
+    "firebase_url": "https://elite-service-92d53-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "elite-service-92d53",
+    "storage_bucket": "elite-service-92d53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336956340236:android:8cd4c1197dc5b855699629",
+        "android_client_info": {
+          "package_name": "android.packageMyFirstApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336956340236-qoc4o10ltq9mtj2fi5r5tm1vkvu24n5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC28Z3S-hMKYokVqC-i6xSebNn94OaU5oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336956340236-qoc4o10ltq9mtj2fi5r5tm1vkvu24n5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "336956340236-gudtjandvehiehk9lfud8q7k0audjoio.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent",
+                "app_store_id": "123456789"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336956340236:android:712bebc8f4f5c3a8699629",
+        "android_client_info": {
+          "package_name": "com.goprService.geleralElite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336956340236-qoc4o10ltq9mtj2fi5r5tm1vkvu24n5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC28Z3S-hMKYokVqC-i6xSebNn94OaU5oo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336956340236-qoc4o10ltq9mtj2fi5r5tm1vkvu24n5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "336956340236-gudtjandvehiehk9lfud8q7k0audjoio.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "host.exp.exponent",
+                "app_store_id": "123456789"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

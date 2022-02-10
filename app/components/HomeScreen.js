@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { initializeApp } from 'firebase/app';
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,19 +14,57 @@ import {
 import { Formik } from "formik";
 import * as Animatable from 'react-native-animatable';
 import * as yup from 'yup';
-
+import {
+  getAuth,
+  onAuthStateChanged,
+  FacebookAuthProvider,
+  signInWithCredential,
+  browserLocalPersistence,
+} from 'firebase/auth';
 import * as Google from 'expo-google-app-auth';
 import { SocialIcon } from 'react-native-elements';
 import { TouchableHighlight } from "react-native-gesture-handler";
 import { GoogleSocialButton } from "react-native-social-buttons";
-
+import * as AuthSession from 'expo-auth-session';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export default function Login({ navigation }) {
+const firebaseConfig = {
+  apiKey: "AIzaSyAQyKGOGj6-WZD1IENAX1LynOz_GbERNw4",
+  authDomain: "workshop.gopr-service.com.ua",
+  databaseURL: "https://elite-service-92d53-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "elite-service-92d53",
+  storageBucket: "elite-service-92d53.appspot.com",
+  messagingSenderId: "336956340236",
+  appId: "1:336956340236:web:e62786b00809d449699629",
+  measurementId: "G-QSF4E7NRMD"
+};
+
+
+export default function Login({ navigation, route }) {
   const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
-
+  
+  // isSignedIn = async () => {
+  //   const isSignedIn = await GoogleSignin.isSignedIn();
+  //   this.setState({ isLoginScreenPresented: !isSignedIn });
+  // };
+  initializeApp(firebaseConfig);
+  const auth = getAuth();
+  useEffect(() => {
+    if(route.params != undefined){      
+      console.log('route, ',route)
+      setSuccess(false);
+    }
+    onAuthStateChanged(auth, user => {
+      console.log('state auth', user)
+      if (user != null) {
+        console.log('We are authenticated now!');
+        setTimeout(() => { navigation.navigate("Main", { user, accessToken, type });  }, 1000);
+        setLoading(false)
+      }
+    })
+  });
   const signInWithGoogleAsync = async () => {
     try {
       setLoading(true)
@@ -33,11 +72,14 @@ export default function Login({ navigation }) {
         iosClientId: `336956340236-gudtjandvehiehk9lfud8q7k0audjoio.apps.googleusercontent.com`,
         androidClientId: `336956340236-024g0jlisil8o9pvjns5ra53f7rmuug3.apps.googleusercontent.com`,
       });
-
+      
       if (type === "success") {
         const session = { type, user, accessToken };
         setSuccess(true);
+        auth.setPersistence(browserLocalPersistence).then(() => {console.log('setting persistanse')})
+       
         await AsyncStorage.setItem("generalElite", JSON.stringify(session));
+        console.log('user, ', user)
         setTimeout(() => { navigation.navigate("Main", { user, accessToken, type }); setLoading(false) }, 1000);
       }
     } catch (error) {
