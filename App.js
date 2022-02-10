@@ -1,12 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+import Header from './app/components/Header';
+import HomeScreen from './app/components/HomeScreen';
+import Main from './app/components/Main'
+
+const Stack = createNativeStackNavigator();
 export default function App() {
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+          name="Home" 
+          component={HomeScreen} 
+          options={{
+            title: 'GOPR-SERVICE',
+            headerStyle: {
+              backgroundColor: '#006873',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',              
+            },
+          }}
+          />
+          <Stack.Screen name="Details" component={Header} />
+          <Stack.Screen name="Main" component={Main} />
+        </Stack.Navigator>
+      </NavigationContainer>
+      
   );
 }
 

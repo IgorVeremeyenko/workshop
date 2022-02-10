@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>336956340236-gudtjandvehiehk9lfud8q7k0audjoio.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.336956340236-gudtjandvehiehk9lfud8q7k0audjoio</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>336956340236-024g0jlisil8o9pvjns5ra53f7rmuug3.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD_Z7eg_lKpBwYJC1RBRGoEtLu22BEHTKc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>336956340236</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>elite.service.workshop</string>
+	<key>PROJECT_ID</key>
+	<string>elite-service-92d53</string>
+	<key>STORAGE_BUCKET</key>
+	<string>elite-service-92d53.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:336956340236:ios:3278c427733a353b699629</string>
+	<key>DATABASE_URL</key>
+	<string>https://elite-service-92d53-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
